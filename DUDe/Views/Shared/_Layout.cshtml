@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - DUDe</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+	<!--This bundle was moved by the Telerik VS Extensions for compatibility reasons-->
+	@Scripts.Render("~/bundles/jquery")
+	<link href="https://kendo.cdn.telerik.com/2019.2.619/styles/kendo.common-material.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://kendo.cdn.telerik.com/2019.2.619/styles/kendo.materialblack.min.css" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+	<script src="https://kendo.cdn.telerik.com/2019.2.619/js/jquery.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2019.2.619/js/jszip.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2019.2.619/js/kendo.all.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2019.2.619/js/kendo.aspnetmvc.min.js"></script>
+	<script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+</head>
+<body class="k-content">
+<nav class="navbar navbar-inverse navbar-fixed-top p-3">
+    <div class="container p-0 p-sm-3">
+        <div class="navbar-header">
+            <button id="configure" class="k-rpanel-toggle k-button k-primary btn-toggle"><span class="k-icon k-i-menu"></span></button>
+            @Html.ActionLink("your logo here", "Index", new { controller = "Home" }, new { @class = "navbar-brand" })
+        </div>
+        <div id="responsive-panel" class="navbar-left">
+            <ul id="menu">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    
+<main>       
+    <div class="container">
+        @RenderSection("featured", required: false)
+        @RenderBody()
+    </div>
+</main>s
+    
+<footer class="footer text-center d-flex align-items-center">
+    <div class="container pb-0">
+        <hr />
+        <p>Copyright &copy; @DateTime.Now.Year Progress Software Corporation and/or its subsidiaries or affiliates. All Rights Reserved.</p>
+    </div>
+</footer>
+    
+<script>
+    $(document).ready(function () {
+        $("#responsive-panel").kendoResponsivePanel({
+            breakpoint: 768,
+            autoClose: false,
+            orientation: "top"
+        });
+        $("#menu").kendoMenu();
+    });
+    function onclick(e) {
+        $("#responsive-panel").getKendoResponsivePanel().toggle();
+    }
+</script>
+</body>
+</html>
