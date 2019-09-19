@@ -1,63 +1,97 @@
 ﻿@using DUDe.Models
-@model LoginViewModel
+@model DUDe.Models.LoginViewModel
 @{
-    ViewBag.Title = "Log in";
+    Layout = null;
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>DUDe</title>
+
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+    <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff">
+    <!-- Retina iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
+    <!-- Retina iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="114x114" href="http://placehold.it/114.png/000/fff">
+    <!-- Standard iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
+    <!-- Standard iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+
+    <!-- Styles -->
+    <link href="~/Content/AdminPanel/css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/AdminPanel/css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/AdminPanel/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="~/Content/AdminPanel/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/AdminPanel/css/lib/unix.css" rel="stylesheet">
+    <link href="~/Content/AdminPanel/css/style.css" rel="stylesheet">
+</head>
+
+    <body class="bg-primary">
+
+    <div class="unix-login">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div class="login-content">
+                        <div class="login-logo">
+                            <a href="index.html"><span>Foodmin</span></a>
+                        </div>
+                        <div class="login-form">
+                            <h4>DUDe Login</h4>
+                             @using (Html.BeginForm("Login", "Account", new {ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+                                 {
+                                    @Html.AntiForgeryToken()
+                                 <div class="form-group">
+                                    @Html.LabelFor(m => m.Email)
+                                    <div>
+                                        @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
+                                        @Html.ValidationMessageFor(m => m.Email, "", new {@class = "text-danger"})
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Password)
+                                    <div>
+                                        @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+                                        @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <div class="checkbox">
+                                            @Html.CheckBoxFor(m => m.RememberMe)
+                                            @Html.LabelFor(m => m.RememberMe)
+
+                                            <label class="pull-right">
+                                                <a href="#">Forgotten Password?</a>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
+                                <div class="social-login-content">
+                                    <div class="social-button">
+                                        <button type="button" class="btn btn-primary bg-facebook btn-flat btn-addon m-b-10"><i class="ti-facebook"></i>Sign in with facebook</button>
+                                        <button type="button" class="btn btn-primary bg-twitter btn-flat btn-addon m-t-10"><i class="ti-twitter"></i>Sign in with twitter</button>
+                                    </div>
+                                </div>
+                                <div class="register-link m-t-15 text-center">
+                                    <p>Don't have account ? <a href="#"> Sign Up Here</a></p>
+                                </div>
+                                  }
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    </body>
+</html>
