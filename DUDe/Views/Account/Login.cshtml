@@ -43,7 +43,7 @@
                 <div class="col-lg-6 col-lg-offset-3">
                     <div class="login-content">
                         <div class="login-logo">
-                            <a href="index.html"><span>Foodmin</span></a>
+                            <span> @Html.ActionLink("DUDe", "Index", "Home")</span>
                         </div>
                         <div class="login-form">
                             <h4>DUDe Login</h4>
@@ -67,11 +67,12 @@
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
                                         <div class="checkbox">
+                                            <label class="pull-left">
                                             @Html.CheckBoxFor(m => m.RememberMe)
                                             @Html.LabelFor(m => m.RememberMe)
-
+                                            </label>
                                             <label class="pull-right">
-                                                <a href="#">Forgotten Password?</a>
+                                                @Html.ActionLink("Forgot Password?", "ForgotPassword", "Account")
                                             </label>
                                         </div>
                                     </div>
@@ -84,7 +85,7 @@
                                     </div>
                                 </div>
                                 <div class="register-link m-t-15 text-center">
-                                    <p>Don't have account ? <a href="#"> Sign Up Here</a></p>
+                                    <p>Don't have account ? @Html.ActionLink("Sign Up Here", "Register", "Account") </p>
                                 </div>
                                   }
                         </div>
