@@ -1,3 +1,5 @@
+using DUDe.App_Start;
+using DUDe.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +12,15 @@ namespace DUDe
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+      
         protected void Application_Start()
         {
+            MqttServer.ConfigureAndStart();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
         }
     }
 }

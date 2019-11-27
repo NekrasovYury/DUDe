@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DUDe.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,10 @@ namespace DUDe.Controllers
 {
     public class HomeController : Controller
     {
+        DeviceContext db = new DeviceContext();
         public ActionResult Index()
         {
-            return View();
+            return View(db.devices);
         }
 
         public ActionResult About()

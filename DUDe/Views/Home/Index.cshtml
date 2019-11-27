@@ -1,25 +1,34 @@
-﻿@{
+﻿@model IEnumerable<DUDe.Models.Device>
+@{
     ViewBag.Title = "DUDe";
     Layout = null;
 }
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <meta name="description" content="Coral - Onepage portfolio Template">
-    <meta name="author" content="esrat">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Fontawseom Icon CSS -->
-    <link rel="stylesheet" href="~/Content/IndexPage/css/all.css">
+        <meta name="description" content="Coral - Onepage portfolio Template">
+        <meta name="author" content="esrat">
 
-    <!-- Theme CSS -->
-    <link rel="stylesheet" href="~/Content/IndexPage/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/Content/IndexPage/css/style.css">
-    <link rel="stylesheet" href="~/Content/IndexPage/css/responsive.css">
+        <!-- Fontawseom Icon CSS -->
+        <link rel="stylesheet" href="~/Content/IndexPage/css/all.css">
 
-    <title>DUDe</title>
-</head>
+        <!-- Theme CSS -->
+        <link rel="stylesheet" href="~/Content/IndexPage/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/Content/IndexPage/css/style.css">
+        <link rel="stylesheet" href="~/Content/IndexPage/css/responsive.css">
+
+        <title>DUDe</title>
+        @foreach (DUDe.Models.Device b in Model)
+        {
+           
+               
+            @b.Temperature
+        
+        }
+    </head>
 
 <body id="page-top">
 
@@ -81,19 +90,31 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="nav-item nav navbar-nav navbar-right">
-                    <li class="nav-item ">
-                       
+
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav-item nav navbar-nav navbar-right">
+                        <li class="nav-item ">
+
                             @Html.ActionLink("Register", "Register", "Account")
-                        
-                    </li>
-                    <li class="nav-item nav navbar-nav navbar-right ">
-                        
-                        @Html.ActionLink("Log in", "Login", "Account")
-                       
-                    </li>
-                </ul>
-                
+
+                        </li>
+                        <li class="nav-item nav navbar-nav navbar-right ">
+
+                            @Html.ActionLink("Log in", "Login", "Account")
+
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav-item nav navbar-nav navbar-right">
+                        <li class="nav-item ">
+                            @Html.ActionLink("Logoff", "LogOff", "Account")
+                        </li>
+                    </ul>
+                }
+
             </div>
             <!-- / .navbar-collapse -->
         </div>
@@ -104,7 +125,7 @@
     ================================================== -->
     <section class="section section-top section-full">
         <!-- Cover -->
-        <div class="bg-cover" style="background-image: url(~/Content/IndexPage/img/56.jpg);"> <img  src="~/Content/IndexPage/img/56.jpg" alt="" class="bg-cover"/></div>
+        <div class="bg-cover" style="background-image: url(~/Content/IndexPage/img/56.jpg);"> <img src="~/Content/IndexPage/img/56.jpg" alt="" class="bg-cover" /></div>
         <!-- Overlay -->
         <div class="bg-overlay"></div>
         <!-- Content -->
@@ -131,7 +152,7 @@
                         <p class="text-center mb-0">
                             <a>
                                 @Html.ActionLink("Register Now", "Register", "Account")
-                             
+
                             </a>
                         </p>
                     </div>
